@@ -10,16 +10,16 @@ plt.subplot(121), plt.imshow(cv2.cvtColor(A, cv2.COLOR_BGR2RGB)), plt.title('Rea
 plt.subplot(122), plt.imshow(cv2.cvtColor(P, cv2.COLOR_BGR2RGB)), plt.title('Fake Currency')
 plt.show()
 
-a = cv2.cvtColor(A, cv2.COLOR_BGR2GRAY)
-p = cv2.cvtColor(P, cv2.COLOR_BGR2GRAY)
+# a = cv2.cvtColor(A, cv2.COLOR_BGR2GRAY)
+# p = cv2.cvtColor(P, cv2.COLOR_BGR2GRAY)
 
-plt.figure(figsize=(12, 6))
-plt.subplot(121), plt.imshow(a, cmap='gray'), plt.title('Real Currency (Grayscale)')
-plt.subplot(122), plt.imshow(p, cmap='gray'), plt.title('Fake Currency (Grayscale)')
-plt.show()
+# plt.figure(figsize=(12, 6))
+# plt.subplot(121), plt.imshow(a, cmap='gray'), plt.title('Real Currency (Grayscale)')
+# plt.subplot(122), plt.imshow(p, cmap='gray'), plt.title('Fake Currency (Grayscale)')
+# plt.show()
 
-a2tr = a[330:1200, 1016:1927]
-b2tr = p[170:1040, 716:1627]
+# a2tr = a[330:1200, 1016:1927]
+# b2tr = p[170:1040, 716:1627]
 
 plt.figure(figsize=(12, 6))
 plt.subplot(121), plt.imshow(a2tr, cmap='gray'), plt.title('Real Currency ROI')
@@ -51,7 +51,7 @@ valThresh = 0.9
 g = croppedImageReal[:,:,1] > satThresh
 h = croppedImageReal[:,:,2] < valThresh
 
-g1 = croppedImageFake[:,:,1] > satThresh
+# g1 = croppedImageFake[:,:,1] > satThresh
 h1 = croppedImageFake[:,:,2] < valThresh
 
 BWImageReal = g & h
@@ -70,8 +70,8 @@ invert = cv2.bitwise_not(binr)
 BWImageCloseReal = cv2.morphologyEx(invert, cv2.MORPH_GRADIENT, np.ones((3, 3), np.uint8))
 
 binr2 = cv2.threshold(p2_str, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
-invert2 = cv2.bitwise_not(binr2)
-BWImageCloseFake = cv2.morphologyEx(invert2, cv2.MORPH_GRADIENT, np.ones((3, 3), np.uint8))
+# invert2 = cv2.bitwise_not(binr2)
+# BWImageCloseFake = cv2.morphologyEx(invert2, cv2.MORPH_GRADIENT, np.ones((3, 3), np.uint8))
 
 areaopenReal = bwareaopen(BWImageCloseReal, 15)
 areaopenFake = bwareaopen(BWImageCloseFake, 15)
